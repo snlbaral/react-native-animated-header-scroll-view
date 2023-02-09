@@ -1,12 +1,11 @@
 # React Native Animated Header ScrollView
 
-[![NPM version][npm-image]][npm-url] [![npm][npm-downloads]][npm-url] [![npm][license-url]][npm-url] [![npm][types-url]][npm-url] [![runs with expo][expo-image]][expo-url]
+[![NPM version][npm-image]][npm-url] [![npm][license-url]][npm-url] [![npm][types-url]][npm-url] [![runs with expo][expo-image]][expo-url]
 
-Performant animated scroll view components that:
-* 🔥Support `FlatList` and `ScrollView` scrolling interactions.
-* 🔥Animate an image or a custom component into a navbar header
-* 🔥Support bounce animation on scroll down
-* 🔥Support both iOS and Android devices
+A performant animated ScrollView component that:
+* 🔥Animates an image or a custom component into a navbar header
+* 🔥Supports bounce animation on scroll down
+* 🔥Supports both iOS and Android devices
 
 ![React Native Animated Header ScrollView](./preview-ios.gif)
 
@@ -38,49 +37,21 @@ export const App = () => {
 };
 ```
 
-```typescript
-import { Card, TopNavBar, HeaderNavBar } from '../components';
-import { AnimatedScrollView } from '@kanelloc/react-native-animated-header-scroll-view';
-import * as React from 'react';
-
-export const App = () => {
-  const data = Array.from(Array(20).keys());
-  const renderItem = ({ item }: any) => {
-    return (
-      <View>
-        <Card item={item} />
-      </View>
-    );
-  };
-
-  return (
-    <AnimatedFlatList
-      headerImage={require('../../assets/cabin.jpg')}
-      data={data}
-      renderItem={renderItem}
-      HeaderNavbarComponent={<HeaderNavBar />}
-      TopNavBarComponent={<TopNavBar />}
-    />
-  );
-};
-```
-
 You can find a set of detailed examples [here](https://github.com/kanelloc/react-native-animated-header-scroll-view/tree/main/example)
 
 Also a running snack [here](https://snack.expo.dev/ukGomwbdE)
 
 # Props
 
-| Prop name                | Description                                                                                                                 | Type                  | Required |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------|----------|
-| `TopNavBarComponent`     | Rendered on top of the screen as a navbar when scrolling to the top                                                         | JSX.Element           | true     |
-| `HeaderComponent`        | A component to use on top of header image. It can also be used without header image to render a custom component as header. | JSX.Element           | false    |
-| `HeaderNavbarComponent`  | Rendered on top of the header. Transitions to TopNavbarComponent as you scroll                                              | JSX.Element           | false    |
-| `headerMaxHeight`        | Height of the header (headerImage or HeaderComponent). Default value is 300                                                 | number                | false    |
-| `topBarHeight`           | Height of the top navbar. Default value is 90                                                                               | number                | false    |
-| `headerImage`            | Image header source                                                                                                         | ImageSourcePropType   | false    |
-| `disableScale`           | Disables header scaling when scrolling. Default value is false                                                              | boolean               | false    |
-| `imageStyle`             | Image styles                                                                                                                | StyleProp<ImageStyle> | false    |
+| Prop name               | Description                                                                                                                 | Type                | Required |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------|---------------------|----------|
+| `TopNavBarComponent`    | Rendered on top of the screen as a navbar when scrolling to the top                                                         | JSX.Element         | true     |
+| `HeaderComponent`       | A component to use on top of header image. It can also be used without header image to render a custom component as header. | JSX.Element         | false    |
+| `HeaderNavbarComponent` | Rendered on top of the header. Transitions to TopNavbarComponent as you scroll                                              | JSX.Element         | false    |
+| `headerMaxHeight`       | Height of the header (headerImage or HeaderComponent). Default value is 300                                                 | number              | false    |
+| `topBarHeight`          | Height of the top navbar. Default value is 90                                                                               | number              | false    |
+| `headerImage`           | Image header source                                                                                                         | ImageSourcePropType | false    |
+| `disableScale`          | Disables header scaling when scrolling. Default value is false                                                              | boolean             | false    |
 
 
 
@@ -98,4 +69,3 @@ MIT
 [types-url]: https://img.shields.io/badge/types-included-blue?style=flat-square
 [expo-image]: https://img.shields.io/badge/Runs%20with%20Expo-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000
 [expo-url]: https://expo.io
-[npm-downloads]: https://img.shields.io/npm/dm/@kanelloc/react-native-animated-header-scroll-view?style=flat-square

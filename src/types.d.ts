@@ -1,12 +1,7 @@
-import type {
-  FlatListProps,
-  ImageStyle,
-  ScrollViewProps,
-  StyleProp,
-} from 'react-native';
+import type { ScrollViewProps } from 'react-native';
 import { Animated, ImageSourcePropType } from 'react-native';
 
-type AnimatedViewProps = {
+export interface AnimatedScrollViewProps extends ScrollViewProps {
   /**
    * Rendered on top of the screen as a navbar when scrolling to the top
    */
@@ -42,31 +37,12 @@ type AnimatedViewProps = {
    * Disables header scaling when scrolling
    */
   disableScale?: boolean;
+}
 
-  /**
-   * Image styles
-   */
-  imageStyle?: StyleProp<ImageStyle>;
-};
-
-export type AnimatedScrollViewProps = AnimatedViewProps & ScrollViewProps;
-
-export type AnimatedFlatListViewProps = AnimatedViewProps & FlatListProps<any>;
-
-export type AnimatedNavbarProps = {
+export interface AnimatedHeaderProps {
   scroll: Animated.Value;
   OverflowHeaderComponent?: JSX.Element;
-  TopNavbarComponent?: JSX.Element;
+  HeaderComponent?: JSX.Element;
   imageHeight: number;
   headerHeight: number;
-};
-
-export type AnimatedHeaderProps = {
-  imageHeight: number;
-  translateYUp: Animated.AnimatedInterpolation<string | number> | 0;
-  translateYDown: Animated.AnimatedInterpolation<string | number> | 0;
-  scale: Animated.AnimatedInterpolation<string | number> | 1;
-  imageStyle?: StyleProp<ImageStyle>;
-  HeaderComponent?: JSX.Element;
-  headerImage?: ImageSourcePropType;
-};
+}

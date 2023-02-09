@@ -1,94 +1,58 @@
-import {
-  Animated,
-  ImageBackground,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
 import React from 'react';
+import { StyleSheet, Animated } from 'react-native';
+import { useAnimateNavbar } from '../hooks/useAnimateNavbar';
 import type { AnimatedHeaderProps } from '../types';
 
-export const AnimatedHeader = ({
-  HeaderComponent,
-  headerImage,
+const AnimatedHeader = ({
+  scroll,
   imageHeight,
-  translateYUp,
-  translateYDown,
-  scale,
-  imageStyle,
+  HeaderComponent,
+  headerHeight,
 }: AnimatedHeaderProps) => {
-  const { width } = useWindowDimensions();
-  const AnimatedImageBackground =
-    Animated.createAnimatedComponent(ImageBackground);
+  const [headerOpacity] = useAnimateNavbar(
+    scroll,
+    imageHeight,
+    headerHeight,
+  );
+
   return (
-    <View
-      style={[
-        styles.imgContainer,
-        {
-          marginTop: -imageHeight * 4,
-          paddingTop: imageHeight * 4,
-        },
-      ]}
-    >
-      {HeaderComponent ? (
-        <>
-          {headerImage ? (
-            <AnimatedImageBackground
-              source={headerImage}
-              style={[
-                { height: imageHeight, width: width * 1.2 },
-                {
-                  transform: [
-                    { scale: scale },
-                    { translateY: translateYUp },
-                    { translateY: translateYDown },
-                  ],
-                },
-                imageStyle,
-              ]}
-            >
-              {HeaderComponent}
-            </AnimatedImageBackground>
-          ) : (
-            <Animated.View
-              style={[
-                { height: imageHeight, width: width * 1.2 },
-                {
-                  transform: [
-                    { scale },
-                    { translateY: translateYUp },
-                    { translateY: translateYDown },
-                  ],
-                },
-              ]}
-            >
-              {HeaderComponent}
-            </Animated.View>
-          )}
-        </>
-      ) : (
-        <Animated.Image
-          source={headerImage}
-          style={[
-            { height: imageHeight, width: width * 1.2 },
-            {
-              transform: [
-                { scale },
-                { translateY: translateYUp },
-                { translateY: translateYDown },
-              ],
-            },
-            imageStyle,
-          ]}
-        />
-      )}
-    </View>
+    <>
+      <Animated.View
+        style={[
+          styles.container,
+          styles.header,
+          {
+            zIndex: headerOpacity,
+            height: headerHeight,
+            opacity: headerOpacity,
+          },
+        ]}
+      >
+        {HeaderComponent}
+      </Animated.View>
+      
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  imgContainer: {
+  container: {
+    paddingTop: 0,
+    position: 'absolute',
+    elevation: 2,
+    top: 0,
+    width: '100%',
+    backgroundColor: 'white',
     alignItems: 'center',
-    overflow: 'hidden',
+    justifyContent: 'center',
+  },
+  header: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#a4a4a4',
+  },
+  overflowHeader: {
+    backgroundColor: 'transparent',
   },
 });
+
+export default AnimatedHeader;
