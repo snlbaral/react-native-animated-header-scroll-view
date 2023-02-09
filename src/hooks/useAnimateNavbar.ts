@@ -5,9 +5,9 @@ export const useAnimateNavbar = (
   imageHeight: number,
   headerHeight: number
 ) => {
-  const HEADER_HEIGHT_DIFFERENCE = imageHeight - headerHeight;
+  const HEADER_HEIGHT_DIFFERENCE = imageHeight - headerHeight+headerHeight;
   const headerOpacity = scroll.interpolate({
-    inputRange: [0, HEADER_HEIGHT_DIFFERENCE * 0.75, HEADER_HEIGHT_DIFFERENCE],
+    inputRange: [0, HEADER_HEIGHT_DIFFERENCE * 1, HEADER_HEIGHT_DIFFERENCE],
     outputRange: [0, 0, 1],
     extrapolate: 'clamp',
   });
